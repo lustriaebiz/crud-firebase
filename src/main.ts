@@ -14,7 +14,7 @@ const serviceAccount = require("../config-firebase.json");
 /** initApp */
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://crud-firebase-xxxx.firebaseio.com"
+    databaseURL: "https://crud-firebase-7b6a3.firebaseio.com"
 });
 // 
 
@@ -53,6 +53,19 @@ class Main {
                     res.send({success: true, message: 'success!'});
                 }
             });
+
+        });
+
+        app.delete('/delete', function(req:any, res:any){
+            
+            let accountRef = db.ref('account/' + req.body.id);
+            accountRef.remove((error) => {
+                if(error) {
+                    res.send({success: false, message: 'failed!'});
+                }else{
+                    res.send({success: true, message: 'success!'});
+                }
+            })
 
         });
 
