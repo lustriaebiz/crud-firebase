@@ -27,10 +27,23 @@ class Main {
 
         let db = admin.database();
         let ref = db.ref("/account");   
+
+        app.get('/list', async function(req:any, res:any){
+            let query = db.ref("/account").orderByChild("isActive").equalTo(true);
+
+            await query.on("value", (snapshot) => {
+                res.send({success: true, data: snapshot?.val()});
+            });
+        })
         
         app.post('/create', function(req:any, res:any){
+            let data = {
+                email: req.body.email, 
+                name: req.body.name,
+                isActive: req.body.isActive
+            };
 
-            let create = ref.push({email: req.body.email, name: req.body.name}, (error) => {
+            let create = ref.push(data, (error) => {
                 if(error) {
                     res.send({success: false, message: 'failed!'});
                 }
@@ -58,7 +71,7 @@ class Main {
 
         app.delete('/delete', function(req:any, res:any){
             
-            let accountRef = db.ref('account/' + req.body.id);
+            let accountRef = db.ref('account/' + req.body.key);
             accountRef.remove((error) => {
                 if(error) {
                     res.send({success: false, message: 'failed!'});
