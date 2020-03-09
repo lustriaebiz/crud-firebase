@@ -1,0 +1,27 @@
+{
+  "name": "crud-firebase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ebiz",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.3",
+    "@types/redis": "^2.8.16",
+    "@types/superagent": "^4.1.7",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "firebase": "^7.10.0",
+    "firebase-admin": "^8.9.2",
+    "nodemon": "^2.0.2",
+    "redis": "^3.0.2",
+    "superagent": "^5.2.2"
+  }
+}
