@@ -28,7 +28,7 @@ class Main {
         let db = admin.database();
         let ref = db.ref("/account");   
 
-        app.get('/list', async function(req:any, res:any){
+        app.get('/list', this.cache, async function(req:any, res:any){
             let query = db.ref("/account").orderByChild("isActive").equalTo(true);
 
             await query.on("value", (snapshot) => {
